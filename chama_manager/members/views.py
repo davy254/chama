@@ -3,8 +3,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from django.views.generic import CreateView
 from matplotlib.style import context
-from .models import Contribution, Member
-from .forms import MemberForm, ContributionForm
+from .models import Contribution, Loan, Member
+from .forms import LoanForm, MemberForm, ContributionForm
 
 # Create your views here.
 
@@ -60,7 +60,24 @@ def show_contributions(request, month):
         'month':month
     }
     return render(request, 'members/show_contributions.html', context)
-    
 
+def take_loan(request):
+    form = LoanForm()
+    if request.method == 'POST':
+        form = LoanForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('show-loans')
+    form = LoanForm()
+    context = { 'form': form,}
+    return render(request, 'members/make_contribution.html', context)
+    
+def show_loans(request):
+    loans = Loan.objects.all()
+    context = {
+        'loans':loans,
+        
+    }
+    return render(request, 'members/show_loans.html', context)
 
 

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Loans</h1>  
+</div>
+
+    
+    <div class="table-responsive text-center">
+        <table class="table table-striped table-sm">
+           {% if loans %}
+          <thead>      
+            <tr>
+              <th scope="col">First Name</th>
+              <th>Month</th>
+              <th> Loan amount</th>
+              <th> Interest</th>
+              <th> Total amount payable</th>
+              <th> Loan status</th>
+            </tr>
+          </thead>
+          <tbody>        
+              {% for loan in loans %}
+                
+                  <tr id='loans' >
+                  <td>{{loan.member.first_name}}</td>
+                  <td>{{loan.month}}</td>
+                  <td id='loan-amount'>{{loan.amount}}</td>
+                  <td id='loan-interest'></td>
+                  <td id='total-payable'></td>
+                  <td id='loan-status'>{{loan.paid}}</td>
+
+                  </tr>
+              {% endfor %}
+            </tbody>
+            {% else %}
+              <p>No contributions for {{ month}}</p>         
+           {% endif %}        
+        </table>
+    </div>
+    <div class='card'>
+      <div class="card-body">
+        <p id='interest-gen'></p>
+      </div>
+    </div>
+{% endblock %}
+
+
+

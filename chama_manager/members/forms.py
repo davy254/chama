@@ -1,5 +1,5 @@
 from django import forms
-from .models import Member, Contribution
+from .models import Loan, Member, Contribution
 
 class MemberForm(forms.ModelForm):
     class Meta:
@@ -9,6 +9,11 @@ class MemberForm(forms.ModelForm):
 class ContributionForm(forms.ModelForm):
     class Meta:
         model = Contribution
+        fields = '__all__'
+
+class LoanForm(forms.ModelForm):
+    class Meta:
+        model = Loan
         fields = '__all__'
 
 
