@@ -10,9 +10,10 @@ from .forms import MemberForm, ContributionForm
 
 def homepage(request):
     form = MemberForm()
-    total_contribution = Member.objects.annotate(total_cont=Sum('contribution__amount'))
+    member_total_contribution = Member.objects.annotate(total_cont=Sum('contribution__amount'))
+    total_contribution = Contribution.objects.aggregate(Sum('amount'))
     context = {'form': form,
-        'members': Member.objects.annotate(total_cont=Sum('contribution__amount')),
+        'members': member_total_contribution,
         'total_contribution':total_contribution,
     }
     return render(request, 'members/homepage.html', context)
