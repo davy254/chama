@@ -68,7 +68,7 @@
                 <td></td>
                 <td>{{member.first_name}}</td>
                 <td>{{member.last_name}}</td>
-                <td>500</td>
+                <td>{{member.total_cont}}</td>
                 <td><a href="{% url 'remove-member' member.id %}" class="btn btn-sm btn-danger" >Remove</a></td>
               </tr>
             {% endfor %}

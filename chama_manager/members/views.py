@@ -1,4 +1,4 @@
-
+from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
 
 from django.views.generic import CreateView
@@ -10,8 +10,10 @@ from .forms import MemberForm, ContributionForm
 
 def homepage(request):
     form = MemberForm()
+    total_contribution = Member.objects.annotate(total_cont=Sum('contribution__amount'))
     context = {'form': form,
-        'members': Member.objects.all()
+        'members': Member.objects.annotate(total_cont=Sum('contribution__amount')),
+        'total_contribution':total_contribution,
     }
     return render(request, 'members/homepage.html', context)
 
