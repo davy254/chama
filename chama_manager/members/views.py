@@ -2,7 +2,8 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
 from django.views.generic import CreateView
-from .models import Member
+from matplotlib.style import context
+from .models import Contribution, Member
 from .forms import MemberForm, ContributionForm
 
 # Create your views here.
@@ -45,6 +46,17 @@ def make_contribution(request):
     form = ContributionForm()
     context = { 'form': form,}
     return render(request, 'members/make_contribution.html', context)
+
+def view_contributions(request):
+    
+    return render(request, 'members/show_contributions.html')
+def show_contributions(request, month):
+    contr = Contribution.objects.filter(month=month)
+    context = {
+        'contr':contr,
+        'month':month
+    }
+    return render(request, 'members/show_contributions.html', context)
     
 
 

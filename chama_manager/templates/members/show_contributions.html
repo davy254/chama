@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Contributions</h1>  
+</div>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <div>
+    <h1>Click on a month</h1>
+  </div>
+  <a href="{% url 'show-contribution' 'JAN' %}" class="btn btn-primary">JAN</a>
+  <a href="{% url 'show-contribution' 'FEB' %}" class="btn btn-primary">FEB</a>
+  <a href="{% url 'show-contribution' 'MAR' %}" class="btn btn-primary">MAR</a>
+  <a href="{% url 'show-contribution' 'APR' %}" class="btn btn-primary">APR</a>
+  <a href="{% url 'show-contribution' 'MAY' %}" class="btn btn-primary">MAY</a>
+  <a href="{% url 'show-contribution' 'JUN' %}" class="btn btn-primary">JUN</a>
+  <a href="{% url 'show-contribution' 'JUL' %}" class="btn btn-primary">JUL</a>
+  <a href="{% url 'show-contribution' 'AUG' %}" class="btn btn-primary">AUG</a>
+  <a href="{% url 'show-contribution' 'SEP' %}" class="btn btn-primary">SEP</a>
+  <a href="{% url 'show-contribution' 'OCT' %}" class="btn btn-primary">OCT</a>
+  <a href="{% url 'show-contribution' 'NOV' %}" class="btn btn-primary">NOV</a>
+  <a href="{% url 'show-contribution' 'DEC' %}" class="btn btn-primary">DEC</a>   
+</div>
+
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+           {% if contr %}
+          <thead>
+            
+            <tr>
+              <th scope="col">First Name</th>
+              <th> {{month}}</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+           
+              {% for con in contr %}
+                
+                  <tr>
+                  <td>{{con.member}}</td>
+                  <td>{{con.amount}}</td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+            {% else %}
+              <p>No contributions for {{ month}}</p>
+              
+            
+            
+           {% endif %}
+          
+          
+        </table>
+    </div>
+         
+
+
+{% endblock %}
