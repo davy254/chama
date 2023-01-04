@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Remove {{member.first_name}} from List of members?</h1>
+    
+</div>
+    <form  method="POST">
+    <div class="modal-body">
+                    
+        {% csrf_token %}
+        <a class="btn btn-warning" href="{% url 'home' %} ">Cancel</a>
+        
+        <button class="btn btn-danger" type="submit">Remove</button>
+        
+    </div>
+    </form>
+
+
+{% endblock  %}
+
+
+
+
+
+
