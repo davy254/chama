@@ -30,11 +30,24 @@
             <div class="position-sticky pt-3">
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
+                  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
                     <span data-feather="home"></span>
                     Members
                   </a>
                 </li>
+                <li class="mb-1 ">
+                  <button class=" btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                    Contribution
+                  </button>
+                  <div class="collapse " id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="{% url 'make-contribution' %}" class="nav-link link-dark rounded">Make Contribution</a></li>
+                      <li><a href="#" class="nav-link link-dark rounded">View Contributions</a></li>
+                      <li><a href="#" class="nav-link link-dark rounded">Reports</a></li>
+                    </ul>
+                  </div>
+                </li>
+                
                
                 
               </ul>

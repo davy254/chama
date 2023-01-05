@@ -20,13 +20,6 @@ class Contribution(models.Model):
     """
         Contribution detail of a member
     """
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
-    amount = models.IntegerField(default=0)
-    contributed = models.BooleanField(default=false)
-
-
-#Model of Month
-class Month(models.Model):
     months =[
         ("JAN","January"),
         ("FEB","February"),
@@ -41,5 +34,12 @@ class Month(models.Model):
         ("NOV","November"),
         ("DEC","December"),    
     ]
-    month = models.CharField( max_length=3 , choices=months)
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    month = models.CharField( max_length=3 , choices=months, null=True)
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, null=True)
+    amount = models.IntegerField(default=0)
+    contributed = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return '%s  contribution for %s' % (self.member, self.month)
+
+
