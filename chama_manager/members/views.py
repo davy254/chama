@@ -52,7 +52,7 @@ def make_contribution(request):
 
 def view_contributions(request):
     
-    return render(request, 'members/show_contributions.html')
+    return render(request, 'members/view_contributions.html')
 def show_contributions(request, month):
     contr = Contribution.objects.filter(month=month)
     context = {
