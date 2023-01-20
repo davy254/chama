@@ -1,0 +1,42 @@
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" 
+       aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Add New Member</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <form action="{% url 'new-member' %}" method="POST">
+                <div class="modal-body">
+                  {% csrf_token %}
+                  {% for field in add_member_form %}
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label" for="{{ field.auto_id }}">
+                      {{ field.label }}
+                      {% for error in field.errors %}
+                        <small id="{{ field.auto_id }}" class="text-danger">{{ error }}</small>
+                      {% endfor %}
+                    </label>
+                    <div class="col-sm-9">
+                      {{ field }}
+                      {% if field.help_text %}
+                      <small>{{ field.help_text|safe }}</small>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endfor %}
+                  
+                 </div>
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" >Add Member</button>
+
+
+                  </div>
+            </form>
+            
+            
+          </div>
+        </div>
+      </div>

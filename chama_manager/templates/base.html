@@ -30,13 +30,14 @@
             <div class="position-sticky pt-3">
               <ul class="nav flex-column">
                 <li class="mb-1 ">
+                  
                   <button class=" btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
                     Members
                   </button>
                   <div class="collapse " id="home-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                       <li>
-                        <a  class='nav-link link-dark rounded' style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <a  class='nav-link link-dark rounded'  data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Add Member
                        </a>
                       </li>
@@ -74,7 +75,9 @@
             </div>
           </nav>
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          {% include 'add_member_modal.html' %}
           {% block content %}
+          
           {% endblock content %}
           </main>
         </div>
