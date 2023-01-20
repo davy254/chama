@@ -9,10 +9,10 @@ from .forms import LoanForm, MemberForm, ContributionForm
 
 #Render the homepage showing all members and their total contribution
 def homepage(request):
-    form = MemberForm()
+    add_member_form = MemberForm()
     member_total_contribution = Member.objects.annotate(total_cont=Sum('contribution__amount'))
     total_contribution = Contribution.objects.aggregate(Sum('amount'))
-    context = {'form': form,
+    context = {'add_member_form': add_member_form,
         'members': member_total_contribution,
         'total_contribution':total_contribution,
     }
