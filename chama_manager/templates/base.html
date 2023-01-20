@@ -29,11 +29,20 @@
           <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <div class="position-sticky pt-3">
               <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
-                    <span data-feather="home"></span>
+                <li class="mb-1 ">
+                  <button class=" btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
                     Members
-                  </a>
+                  </button>
+                  <div class="collapse " id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li>
+                        <a  class='nav-link link-dark rounded' style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Add Member
+                       </a>
+                      </li>
+                      <li><a href="{% url 'view-contribution' %}" class="nav-link link-dark rounded">View Contributions</a></li>
+                    </ul>
+                  </div>
                 </li>
                 <li class="mb-1 ">
                   <button class=" btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
