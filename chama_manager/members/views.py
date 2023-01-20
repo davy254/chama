@@ -37,7 +37,7 @@ def remove_member(request, pk):
     if request.method == 'POST':
         member.delete()
         return redirect('home')
-    context = {'member':member}
+    context = {'member':members, 'member':member}
     return render(request, 'members/remove_member.html', context)
     
 # functionality for making contribution for a member
@@ -76,6 +76,7 @@ def show_contributions(request, month):
 
 # take a loan functionality
 def take_loan(request):
+    members = Member.objects.all()
     add_member_form = MemberForm()
     form = LoanForm()
     if request.method == 'POST':
@@ -84,7 +85,7 @@ def take_loan(request):
             form.save()
             return redirect('show-loans')
     form = LoanForm()
-    context = { 'form': form,'add_member_form':add_member_form}
+    context = { 'form': form,'add_member_form':add_member_form, 'members':members}
     return render(request, 'members/make_contribution.html', context)
 
 # show all loans taken    
