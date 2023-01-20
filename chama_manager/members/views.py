@@ -42,6 +42,7 @@ def remove_member(request, pk):
     
 # functionality for making contribution for a member
 def make_contribution(request):
+    members = Member.objects.all()
     form = ContributionForm()
     add_member_form = MemberForm()
     if request.method == 'POST':
@@ -50,7 +51,7 @@ def make_contribution(request):
             form.save()
             return redirect('home')
     form = ContributionForm()
-    context = { 'form': form,'add_member_form':add_member_form}
+    context = { 'form': form,'add_member_form':add_member_form, 'members':members}
     return render(request, 'members/make_contribution.html', context)
 
 
