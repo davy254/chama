@@ -4,7 +4,8 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Make Contribution</h1>  
 </div>
-<form action="" method="POST">
+{% if members %}
+    <form action="" method="POST">
     {% csrf_token %}
     <div class="modal-body">
       {% csrf_token %}
@@ -30,6 +31,17 @@
         <button type="submit" class="btn btn-primary" >Submit</button>
       </div>
 </form>
+
+{% else %}
+
+  <div class='card'>
+            <div class="card-body">
+              <p>Currently there are no members.</p>
+            </div>
+        </div>
+  </div>
+
+{% endif %}
 
 
 {% endblock  %}

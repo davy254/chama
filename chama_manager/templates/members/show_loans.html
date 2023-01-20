@@ -34,16 +34,19 @@
                   </tr>
               {% endfor %}
             </tbody>
+             </table>
+        </div>
+
+         <div class='card'>
+            <div class="card-body">
+               <p id='interest-gen'></p>
+           </div>
+         </div>
             {% else %}
-              <p>No contributions for {{ month}}</p>         
+              <p>No loans taken</p>         
            {% endif %}        
-        </table>
-    </div>
-    <div class='card'>
-      <div class="card-body">
-        <p id='interest-gen'></p>
-      </div>
-    </div>
+     
+   
 {% endblock %}
 
 
