@@ -39,9 +39,21 @@
                   </tr>
               {% endfor %}
             </tbody>
+        </table>
+
+              <div>
+
+                <div class='card'>
+                      <div class="card-body">
+                        <p>Total amount  contributed in {{ month}} is sh. {{ sum_month_contribution.amount__sum}}</p>
+                      </div>
+                </div>
+              </div>    
+            
             {% else %}
               <p>No contributions for {{ month}}</p>         
            {% endif %}        
-        </table>
-    </div>
+        
+         
+      </div>
 {% endblock %}

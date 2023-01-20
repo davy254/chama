@@ -55,9 +55,12 @@ def view_contributions(request):
     return render(request, 'members/view_contributions.html')
 def show_contributions(request, month):
     contr = Contribution.objects.filter(month=month)
+    month_contribution = Contribution.objects.filter(month=month)
+    sum_month_contribution = month_contribution.aggregate(Sum('amount'))
     context = {
         'contr':contr,
-        'month':month
+        'month':month,
+        'sum_month_contribution':sum_month_contribution
     }
     return render(request, 'members/show_contributions.html', context)
 
