@@ -1,6 +1,6 @@
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.contrib import messages
 from django.views.generic import CreateView
 from matplotlib.style import context
 from .models import Contribution, Loan, Member
@@ -24,6 +24,7 @@ def create_member(request):
         add_member_form = MemberForm(request.POST)
         if add_member_form.is_valid():
             add_member_form.save()
+            messages.success(request, 'New member added.')
         
     add_member_form = MemberForm()
     context = { 'add_member_form': add_member_form,}
@@ -35,6 +36,7 @@ def remove_member(request, pk):
     member = get_object_or_404(Member,pk=pk)
     if request.method == 'POST':
         member.delete()
+        messages.success(request,f'{member} has been removed.')
         return redirect('home')
     context = {'member':members, 'member':member}
     return render(request, 'members/remove_member.html', context)

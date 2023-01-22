@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href={% static 'css/bootstrap/css/bootstrap.min.css' %}>
     <link rel="stylesheet" href={% static 'css/style.css' %}>
+    <link rel="stylesheet" href="{% static 'js/toastr/toastr.min.css' %}">
+
     <title>Document</title>
 </head>
 <body >
@@ -84,7 +86,17 @@
           </main>
         </div>
       </div>
+  <script src="{% static 'jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'js/toastr/toastr.min.js' %}"></script>
   <script src="{% static "css/bootstrap/js/bootstrap.js" %}"></script>
   <script src="{% static "js/loan.js" %}"></script>
+    {% if messages %}
+      {% for message in messages %}
+        <script type=text/javascript>
+          toastr.options.progressBar = true;
+          toastr.{{ message.tags }}('{{ message }}')
+        </script>
+      {% endfor %}
+  {% endif %}
 </body>
 </html>
