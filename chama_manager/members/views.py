@@ -9,10 +9,9 @@ from .forms import LoanForm, MemberForm, ContributionForm
 
 #Render the homepage showing all members and their total contribution
 def homepage(request):
-    add_member_form = MemberForm()
     member_total_contribution = Member.objects.annotate(total_cont=Sum('contribution__amount'))
     total_contribution = Contribution.objects.aggregate(Sum('amount'))
-    context = {'add_member_form': add_member_form,
+    context = {
         'members': member_total_contribution,
         'total_contribution':total_contribution,
     }
@@ -44,26 +43,22 @@ def remove_member(request, pk):
 def make_contribution(request):
     members = Member.objects.all()
     form = ContributionForm()
-    add_member_form = MemberForm()
     if request.method == 'POST':
         form = ContributionForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
     form = ContributionForm()
-    context = { 'form': form,'add_member_form':add_member_form, 'members':members}
+    context = { 'form': form, 'members':members}
     return render(request, 'members/make_contribution.html', context)
 
 
 #view all contributions made by all members
 def view_contributions(request):
-    add_member_form = MemberForm()
-    context = { 'add_member_form': add_member_form,}
     return render(request, 'members/view_contributions.html', context)
 
 # show all contributions and total contribution for each month
 def show_contributions(request, month):
-    add_member_form = MemberForm()
     contr = Contribution.objects.filter(month=month)
     month_contribution = Contribution.objects.filter(month=month)
     sum_month_contribution = month_contribution.aggregate(Sum('amount'))
@@ -71,14 +66,12 @@ def show_contributions(request, month):
         'contr':contr,
         'month':month,
         'sum_month_contribution':sum_month_contribution,
-        'add_member_form':add_member_form
     }
     return render(request, 'members/show_contributions.html', context)
 
 # take a loan functionality
 def take_loan(request):
     members = Member.objects.all()
-    add_member_form = MemberForm()
     form = LoanForm()
     if request.method == 'POST':
         form = LoanForm(request.POST)
@@ -86,16 +79,14 @@ def take_loan(request):
             form.save()
             return redirect('show-loans')
     form = LoanForm()
-    context = { 'form': form,'add_member_form':add_member_form, 'members':members}
+    context = { 'form': form, 'members':members}
     return render(request, 'members/make_contribution.html', context)
 
 # show all loans taken    
 def show_loans(request):
-    add_member_form = MemberForm()
     loans = Loan.objects.all()
     context = {
         'loans':loans,
-        'add_member_form':add_member_form
         
     }
     return render(request, 'members/show_loans.html', context)
