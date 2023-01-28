@@ -16,8 +16,7 @@ class Member(models.Model):
 
 
 
-    def __str__(self) -> str:
-        return '%s  contribution for %s' % (self.member, self.month)
+    
 
 #Model of loan
 class Loan(models.Model):

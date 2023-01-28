@@ -26,3 +26,7 @@ class Contribution(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, null=True)
     amount = models.IntegerField(default=0)
     contributed = models.BooleanField(default=False)
+
+
+    def __str__(self) -> str:
+        return '%s  contribution for %s' % (self.member, self.month)

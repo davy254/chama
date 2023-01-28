@@ -50,7 +50,7 @@ def make_contribution(request):
 
 #view all contributions made by all members
 def view_contributions(request):
-    return render(request, 'members/view_contributions.html', context)
+    return render(request, 'members/view_contributions.html')
 
 # show all contributions and total contribution for each month
 def show_contributions(request, month):
