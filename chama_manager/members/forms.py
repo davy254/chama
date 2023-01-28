@@ -1,5 +1,6 @@
 from django import forms
-from .models import Loan, Member, Contribution
+from .models import Loan, Member 
+from core.models import Contribution
 
 class MemberForm(forms.ModelForm):
     class Meta:

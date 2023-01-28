@@ -3,19 +3,12 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.views.generic import CreateView
 from matplotlib.style import context
-from .models import Contribution, Loan, Member
+from core.models import Contribution
+from .models import Loan, Member
 from .forms import LoanForm, MemberForm, ContributionForm
 
 
-#Render the homepage showing all members and their total contribution
-def homepage(request):
-    member_total_contribution = Member.objects.annotate(total_cont=Sum('contribution__amount'))
-    total_contribution = Contribution.objects.aggregate(Sum('amount'))
-    context = {
-        'members': member_total_contribution,
-        'total_contribution':total_contribution,
-    }
-    return render(request, 'members/homepage.html', context)
+
 
 # functionality for adding a member
 def create_member(request):
