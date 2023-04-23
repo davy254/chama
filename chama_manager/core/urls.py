@@ -4,8 +4,8 @@ from.views import  index, homepage
 
 
 urlpatterns = [
-    path('', index, name='landing'),
-    path('home/', homepage, name='home'),
+    #path('', index, name='landing'),
+    path('', homepage, name='home'),
 
     
 ]
