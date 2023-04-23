@@ -44,12 +44,16 @@
                   </button>
                   <div class="collapse " id="member-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li>
-                        <a  class='nav-link link-dark rounded' style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                     
+                        {% if user.is_staff %}
+                         <li>
+                            <a  class='nav-link link-dark rounded' style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         
-                        Add Member
-                       </a>
-                      </li>
+                             Add Member
+                            </a>
+                         </li>
+                        {% endif %}
+                        
                       <li><a href="{% url 'home' %}" class="nav-link link-dark rounded">Show all members</a></li>
                       <li><a href="{% url 'view-contribution' %}" class="nav-link link-dark rounded">View Contributions</a></li>
                     </ul>
@@ -61,7 +65,13 @@
                   </button>
                   <div class="collapse " id="contribution-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                      <li><a href="{% url 'make-contribution' %}" class="nav-link link-dark rounded">Make Contribution</a></li>
+
+                      {% if user.is_staff %}
+                        
+                        <li><a href="{% url 'make-contribution' %}" class="nav-link link-dark rounded">Make Contribution</a></li>
+
+                      {% endif %}
+
                       <li><a href="{% url 'view-contribution' %}" class="nav-link link-dark rounded">View Contributions</a></li>
                     </ul>
                   </div>
@@ -74,7 +84,11 @@
                   <div class="collapse " id="loan-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                       <li><a href="{% url 'show-loans' %}" class="nav-link link-dark rounded">Show loans</a></li>
-                      <li><a href="{% url 'take-loan' %}" class="nav-link link-dark rounded">Take Loan</a></li>
+
+                      {% if user.is_staff %}
+                        <li><a href="{% url 'take-loan' %}" class="nav-link link-dark rounded">Take Loan</a></li>
+                      {% endif %}
+                      
                     </ul>
                   </div>
                 </li>
