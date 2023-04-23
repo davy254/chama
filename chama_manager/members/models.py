@@ -36,7 +36,7 @@ def create_user(sender, instance, created, **kwargs):
 def delete_user(sender, instance , **kwargs):
     print('statr user removal')
     try:
-        user = get_object_or_404(User,username=instance.first_name)
+        user = get_object_or_404(User,username='@' + instance.first_name + '_' + instance.last_name)
         print(user)
         user.delete()
         
