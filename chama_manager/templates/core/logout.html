@@ -1,0 +1,31 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static 'css/bootstrap/css/bootstrap.min.css' %}>
+    <link rel="stylesheet" href={% static 'css/style.css' %}>
+
+    <title>Chama Manager</title>
+</head>
+<body id='body'>
+    
+        <div class="row">
+            <div class="col-md-4 mt-5" id='signin'>
+                <div class="card">
+                    <div class="card-body">
+                       
+                            <h3>LogIn</h3>
+                            
+                            <a class="w-100 mt-3 btn btn-lg btn-primary" href={% url 'login' %}>Log in</a>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</body>
+</html>
