@@ -6,16 +6,17 @@ from django.dispatch import receiver
 from .models import Member
 
 
-@receiver(post_save, sender=Member)
+@receiver(pre_save, sender=Member)
 def create_user(sender, instance, created, **kwargs):
     print('signal received')
     if created:
         print('start user creation')
-        User.objects.create_user(username=instance.first_name, email='',  password='password').save()
+        user = User.objects.create_user(username=instance.first_name, email='' )
+        user.set_password('password')
+        user.save()
 
-@receiver(post_save, sender=User)
-def save_profile(sender, instance, **kwargs):
-    instance.save()
+
+
 
 
 
