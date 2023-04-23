@@ -1,4 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save, pre_delete
+from django.dispatch import receiver
+from django.shortcuts import get_object_or_404
+
+
 
 
 
@@ -12,9 +18,31 @@ class Member(models.Model):
     last_name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.first_name
+        return str(self.first_name)
 
-    
+
+@receiver(post_save, sender=Member)
+def create_user(sender, instance, created, **kwargs):
+    print('signal received')
+    if created:
+        print('start user creation')
+        user = User.objects.create_user(
+            username='@' + instance.first_name + '_' + instance.last_name, 
+            email= '', 
+            password='password')
+        print('user created')
+
+@receiver(pre_delete, sender=Member)
+def delete_user(sender, instance , **kwargs):
+    print('statr user removal')
+    try:
+        user = get_object_or_404(User,username=instance.first_name)
+        print(user)
+        user.delete()
+        
+    except User.DoesNotExist:
+        print('user not found')
+
 
 
 
