@@ -23,16 +23,27 @@ rows.forEach(row => {
 
 // getting all interest generated
 const interestGen = document.getElementById('interest-gen')
+
 totalInterest=0
+// rows.forEach(row => {
+    
+//     totalInterest += Number(row.cells[3].textContent)
+//     interestGen.innerHTML= 'The total interest earned is sh. ' + totalInterest
+// });
+
 rows.forEach(row => {
-    totalInterest += Number(row.cells[3].textContent)
-    interestGen.innerHTML= 'The total interest earned is sh. ' + totalInterest
+    if (row.cells[5].textContent === "PAID") {
+        totalInterest += Number(row.cells[3].textContent)
+    }
+    
+    interestGen.innerHTML = 'The total interest earned is sh. ' + totalInterest
 });
 
 // Highlighting loan status with color
 const loanStatus = document.querySelectorAll('#loan-status')
 
 console.log(loanStatus)
+
 
 loanStatus.forEach(loan => {
     loan.textContent === "PENDING" ? loan.style.backgroundColor = 'red': loan.style.backgroundColor = 'green'

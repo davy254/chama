@@ -21,7 +21,7 @@
         
         <div class="navbar-nav">
           <div class="nav-item text-nowrap">
-            {% if user.is_staff %}
+            {% if user.is_active %}
               <a class="nav-link px-3" href="{% url  'logout' %}">Sign out</a>
             {% else %}
               <a class="nav-link px-3" href="{% url  'login' %}">login</a>
