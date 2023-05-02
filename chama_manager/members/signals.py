@@ -7,11 +7,8 @@ from .models import Member
        
 @receiver(post_save, sender=Member)
 def create_user(sender, instance, created, **kwargs):
-    print('signal received')
     if created:
-        print('start user creation')
         user = User.objects.create_user(username=instance.first_name, email='' , password='password')
-        print('user created')
 
 
 # @receiver(pre_delete, sender=Member)
