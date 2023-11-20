@@ -61,3 +61,30 @@
   .btn-toggle[aria-expanded="true"]::before {
     transform: rotate(90deg);
   }
+
+  @media screen and (max-width:1340px) {
+    .my-width{
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width:768px) {
+    .my-card{
+      display: flex;
+      width: 50%;
+    }
+    
+  }
+  @media screen and (min-width:768px) {
+      .card-width-25 {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+      }
+    }
+
+  @media screen and (min-width:200px) and (max-width:600px){
+    .card-width-25 {
+      width: 100%;
+    }
+  }
