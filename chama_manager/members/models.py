@@ -14,8 +14,8 @@ class Member(models.Model):
     """
         Details of a member
     """
-    first_name = models.CharField( max_length=50)
-    last_name = models.CharField(max_length=50)
+    first_name = models.CharField( max_length=100, null=False, blank=False)
+    last_name = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
         return str(self.first_name)
@@ -32,10 +32,8 @@ def create_user(sender, instance, created, **kwargs):
 
 @receiver(pre_delete, sender=Member)
 def delete_user(sender, instance , **kwargs):
-    print('statr user removal')
     try:
         user = get_object_or_404(User,username='@' + instance.first_name + '_' + instance.last_name)
-        print(user)
         user.delete()
         
     except User.DoesNotExist:

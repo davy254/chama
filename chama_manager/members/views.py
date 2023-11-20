@@ -36,6 +36,7 @@ def remove_member(request, pk):
     
 # functionality for making contribution for a member
 def make_contribution(request):
+    print(request.POST)
     members = Member.objects.all()
     form = ContributionForm()
     if request.method == 'POST':
