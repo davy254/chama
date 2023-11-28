@@ -1,5 +1,7 @@
 # Django Chama Project
 
+[![Django CI](https://github.com/davy254/django_blog_2/actions/workflows/django.yml/badge.svg)](https://github.com/davy254/django_blog_2/actions/workflows/django.yml)
+
 This is an welfare contribution project built with Django. It is built to perform the following:
 
 - Record  New members
